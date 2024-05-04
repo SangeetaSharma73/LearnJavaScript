@@ -11,7 +11,7 @@ console.log(arr)
 //find the length of array
 console.log(arr.length)
 
-//inbuilt js array methods
+//inbuilt methods in js array methods
 var arr2=[12,14,15,54]
 
 //pop method- remove element from the end
@@ -22,6 +22,7 @@ console.log(arr2)
 arr2.push(100)
 console.log(arr2)
 
+
 //Shift method- remove first element from array
 console.log('before shift',arr2)
 var d=arr2.shift()
@@ -31,3 +32,4 @@ console.log(arr2)
 //Unshift method- used to insert the element from first index
 arr2.unshift(102)
 console.log(arr2)
+
