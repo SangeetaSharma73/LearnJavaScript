@@ -23,10 +23,11 @@ arr2.push(100)
 console.log(arr2)
 
 //Shift method- remove first element from array
+console.log('before shift',arr2)
 var d=arr2.shift()
 console.log(d)
 console.log(arr2)
 
-//Unshift method- used to 
+//Unshift method- used to insert the element from first index
 arr2.unshift(102)
 console.log(arr2)
