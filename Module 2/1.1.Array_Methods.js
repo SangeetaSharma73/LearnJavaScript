@@ -195,3 +195,9 @@ const iterator = array29.entries();
 for (const entry of iterator) {
   console.log(entry); // Output: [0, 'a'], [1, 'b'], [2, 'c']
 }
+
+//splice- arr.splice(start_index,delete_element,add_element)
+let arr15=[1,2,3,4,5]
+// x=arr15.splice(2,3,7,8,9)
+// x=arr.splice(0)
+console.log(arr.length)
