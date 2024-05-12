@@ -39,3 +39,18 @@ if(num1==num2)
  console.log("true");
 else
  console.log("false");
+ 
+ let p=23,r=23;
+ console.log(p==r,p===r)
+
+ let q=[1,2],w=[1,2]
+ console.log('q and w',q==w,q===w)
+ console.log([]==[] )
+ let a=[1,2]
+ b=a
+ console.log(a==b,a===b)
+
+ let k={name:'rita'}
+ let g={name:'rita'}
+ console.log(k==g,k===g)
+ var obj={name}
