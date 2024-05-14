@@ -14,9 +14,9 @@ console.log(1==='1',2===2) //check if two values are equal without type conversi
 console.log(1!='1',2!=3)//check if two values are not equal
 console.log(1!=='1',1!==1,1!==2)//check if two values are not equal without type conversion
 console.log(1>3,5>2)
-console.log(1<3,5<002)
+// console.log(1<3,5<002)
 console.log(1>3,5>2)
-console.log(1>=3,2==002,3>=1)
+// console.log(1>=3,2==002,3>=1)
 console.log(2<=3,3<=1)
 
 //assignment operators
