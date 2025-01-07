@@ -1,0 +1,19 @@
+{
+    "students":[
+    {
+        "id":1,
+        "name":"Chunnu",
+        "city":"mtr"
+        
+    },
+    {
+        "id":2,
+        "name":"Munnu",
+        "city":"Agra"
+        
+    }],
+    "teachers":[{
+        "id":3,
+        "name":"tiya"
+    }]
+}

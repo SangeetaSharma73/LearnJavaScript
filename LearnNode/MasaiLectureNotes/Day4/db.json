@@ -1,0 +1,27 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "siya",
+      "city": "Pune"
+    },
+    {
+      "id": 2,
+      "name": "Jiya",
+      "city": "mathura"
+    },
+    {
+    "id": 3,
+    "name": "Uk",
+    "city": "Kedarnath"
+  }
+  ],
+  "teacher":[
+    {
+        "id":1,
+        "name":"kratika",
+        "place":"Kanpur"
+    }
+
+  ]
+}
