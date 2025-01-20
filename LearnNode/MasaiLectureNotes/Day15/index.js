@@ -1,17 +1,29 @@
 const express = require('express');
-const UserModel = require('./models/user.model');
+const {UserModel} = require('./models/user.model');
 const {connectDB} = require("./db");
-
+const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
 const app=express();
 
 app.use(express.json())
 
 app.post("/users",async(req,res)=>{
-    // const {name,email,pass}
+    const {name,email,pass,role}=req.body;
     try{
-        const newUser = new UserModel(req.body)
-        await newUser.save()
-        res.json({msg:"New user has been added"})
+
+        bcrypt.hash(pass,5,async function(err,hash){
+            if(err){
+                res.json({err})
+            }
+            const newUser = new UserModel({
+                name,email,role,pass:hash
+            });
+            await newUser.save();
+            res.json({ msg: "New user has been added" });
+        })
+        // const newUser = new UserModel(req.body)
+        // await newUser.save()
+        // res.json({msg:"New user has been added"})
     }catch(err){
         res.json({err})
     }
