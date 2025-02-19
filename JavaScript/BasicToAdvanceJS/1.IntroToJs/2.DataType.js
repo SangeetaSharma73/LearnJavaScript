@@ -1,6 +1,6 @@
 // string :The first type of data is a String. This is used to store a sequence of characters used to represent text.
 let st = "this";
-let mySt = "Focus Locus";
+let mySt = 'Focus Locus';
 let MySt = `Hi`;
 
 
