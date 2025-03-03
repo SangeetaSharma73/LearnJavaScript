@@ -112,3 +112,22 @@ console.log(obj1.x, obj2.x); // Output: 2 2
 // 3. **Copying Objects**:
 //     - Use `Object.assign()` or the spread operator for shallow copying.
 //     - For deep copying, consider using JSON methods or libraries.
+
+// Shallow copy
+let original = { a: 1, b: { c: 2 } };
+let shallowCopy = { ...original };
+
+// Deep copy
+let deepCopy = JSON.parse(JSON.stringify(original));
+
+
+// 1. **Immutable Update Patterns**:
+//     - In state management (e.g., React), use immutable update patterns to create new objects instead of modifying existing ones.
+
+
+let state = { count: 0, user: { name: "Alice" } };
+let newState = {
+  ...state,
+  count: state.count + 1,
+  user: { ...state.user, name: "Bob" },
+};
