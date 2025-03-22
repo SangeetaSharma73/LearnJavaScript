@@ -44,19 +44,110 @@
 
 
 //3. question
-function sayHello() {
-  console.log("Hello! ", this);
+// function sayHello() {
+//   console.log("Hello! ", this);
+// }
+
+// var john = {
+//   name: "John Doe",
+//   age: 30,
+// };
+
+// var james = {
+//   name: "James Bond",
+//   age: 30,
+// };
+
+// sayHello.call(james);
+// sayHello.call(john);
+
+
+//difference between call,apply and bind
+
+
+// function introduce(language, country) {
+//   console.log(
+//     `Hello, my name is ${this.name}. I speak ${language} and I'm from ${country}.`
+//   );
+// }
+
+// var john = { name: "John Doe" };
+// var james = { name: "James Bond" };
+
+// // Using call()
+// introduce.call(john, "English", "USA");
+
+
+// // Using apply()
+// introduce.apply(james, ["French", "France"]);
+
+// function greet() {
+//   console.log(`Hello, my name is ${this.name}`);
+// }
+
+// var alice = { name: "Alice" };
+
+// // Using bind()
+// var boundGreet = greet.bind(alice);
+// boundGreet(); // Calling the function later
+
+
+//Que- 4
+
+// var sayArrowHello = () => {
+//   console.log("Arrow Hello ", this);
+// };
+
+// sayArrowHello();
+
+// function sayRegularHello() {
+//   console.log("Regular Hello ", this);
+// }
+
+// sayRegularHello();
+
+
+// const person = {
+//   name: "Rahul",
+//   // this:this,
+//   sayHello: () => {
+//     console.log("Hello, my name is", this.name);
+//   },
+// };
+
+// person.sayHello();
+// console.log(person.this);
+
+
+// var sayArrowHello = () => {
+//   console.log("Arrow Hello ", this);
+// };
+
+// sayArrowHello();
+
+
+
+
+var john = { name: "John Doe", age: 25 };
+
+var mohan = { name: "John1 Doe", age: 24 };
+
+var sayArrowHello = () => {
+  console.log("Arrow Hello ", this);
+};
+
+function sayRegularHello() {
+  console.log("Regular Hello ", this);
 }
 
-var john = {
-  name: "John Doe",
-  age: 30,
-};
+function sayRegularName() {
+  console.log("My Regular name is ", this.name, this);
+  sayRegularHello();
+  sayArrowHello();
+  var sayArrowGoodBye = () => {
+    console.log("Arrow GoodBye ", this);
+  };
+  sayArrowGoodBye();
+}
 
-var james = {
-  name: "James Bond",
-  age: 30,
-};
-
-sayHello.call(james);
-sayHello.call(john);
+sayRegularName.call(john);

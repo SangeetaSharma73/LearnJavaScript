@@ -15,7 +15,7 @@ const Toggle= () => {
     setIsDarkMode(newMode);
     localStorage.setItem("darkMode", newMode); // Local storage me save karo
   };
-
+  
   useEffect(() => {
     localStorage.setItem("darkMode", isDarkMode);
   }, [isDarkMode]); // Jab bhi mode change ho, local storage update ho
