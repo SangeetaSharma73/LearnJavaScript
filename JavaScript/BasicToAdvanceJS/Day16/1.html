@@ -6,9 +6,26 @@
     <title>DOM</title>
   </head>
   <body>
-    <h1 id="heading1" class="h1Class">this is the heading</h1>
+    <!-- <h1 id="heading1" class="h1Class">this is the heading</h1>
     <h1 class="h1Class">this is 2nd heading</h1>
-    <p>this is paragraph</p>
+    <p class="p1">this is paragraph</p> -->
+    <div>this is a guy</div>
+    <div>is it beauty</div>
+    <div class="item" data-id="1">Item 1</div>
+    <div class="item" data-id="2">Item 2</div>
+    <div class="item" data-id="3">Item 3</div>
+    <div class="item" data-id="4">Item 4</div>
+    <div class="item" data-id="5">Item 4</div>
+    <div class="item" data-id="6">Item 6</div>
+    <div class="item" data-id="7">Item 7</div>
+    <div class="item" data-id="8">Item 8</div>
+    <p>this is a para</p>
+    <li>this is my name</li>
+    <p id="demoPara">
+      This element has extra spacing and contains <span>a span element</span>.
+      Also, the second span is hidden:
+      <span style="display: none">I am hidden</span>
+    </p>
   </body>
   <script>
     // let heading1 = document.getElementById("heading1");
@@ -17,7 +34,120 @@
     // console.log(h1Class);
     // let p1 = document.getElementsByTagName("p");
     // console.log(p1);
-    let select1 = document.querySelector(".h1Class");
-    console.log(select1);
+    // let select1 = document.querySelector(".h1Class");
+    // console.log(select1);
+    let allItems = document.querySelectorAll(".item");
+    // console.log(allItems);
+
+    //     allItems.forEach(function (element) {
+    //   console.log(element.getAttribute('data-id'));
+    // })
+
+    let allItemsArray = Array.from(allItems);
+    // console.log(allItemsArray);
+
+    let allItemsArray2 = [...allItemsArray];
+    // console.log(allItemsArray2);
+
+    // for(let item of allItems){
+    //   console.log(item.innerHTML);
+    // }
+
+    //   for (let itemKey of allItems.keys()) {
+    //   console.log(itemKey);
+    // }
+
+    // for (let itemValue of allItems.values()) {
+    //   console.log(itemValue);
+    // }
+
+    // for (let itemEntry of allItems.entries()) {
+    //   console.log(itemEntry);
+    // }
+
+    // var ele = document.getElementsByTagName('p');
+    // var sib = ele.nextElementSibling
+    // console.log(sib)
+    // console.log(ele.previousElementSibling)
+
+    var newHeading = document.createElement("h1");
+    // console.log(newHeading);
+    newHeading.innerText = "hi this is my friend";
+    // console.log(newHeading);
+
+    // create new elments
+    var newHeading = document.createElement("h1");
+    var newParagraph = document.createElement("p");
+
+    // create text nodes for new elements
+    var h1Text = document.createTextNode("This is a nice header text!");
+    var pText = document.createTextNode("This is a nice paragraph text!");
+
+    // attach new text nodes to new elements
+    newHeading.appendChild(h1Text);
+    newParagraph.appendChild(pText);
+
+    // elements are now created and ready to be added to the DOM.
+
+    // Get operation
+
+    console.log(document.getElementById("demoPara").innerText);
+    //-> This element has extra spacing and contains a span element. Also, the second span is hidden:
+    // the log from innerText is identical to what is rendered in the browser. There are no extra spaces and the second span is hidden
+
+    console.log(document.getElementById("demoPara").textContent);
+    //-> This element has extra                spacing and
+    //-> contains
+    //-> a span element. Also, the second span is hidden: I am hidden
+    // the log from textContent is identical to what we wrote
+
+    console.log(document.getElementById("demoPara").innerHTML);
+    //-> This element has extra                spacing and
+    //-> contains
+    //-> <span>a span element</span>. Also, the second span is hidden: <span style="display:none">I am hidden</span>
+
+    // Set operation
+
+    const body = document.body;
+    // const div = document.createElement("div");
+    const div2 = document.createElement("div");
+    const div3 = document.createElement("div");
+
+    // div.innerText = `Hello
+    // World`;
+
+    /*
+<div>
+  "Hello "
+  <br>
+  "World"
+</div>
+*/
+
+    div2.textContent = `Bye 
+World`;
+
+    /*
+<div>Bye 
+World</div>
+*/
+
+    div3.innerHTML = `Whatsup 
+World`;
+    /*
+<div>Whatsup 
+World</div>
+*/
+
+    // body.append(div);
+    body.append(div2);
+    body.append(div3);
+
+    const div = document.createElement("div");
+    div.innerHTML = "<strong>Hello World!!</strong>";
+    body.append(div);
+    let item = document.querySelector('.item');
+    item.style.color = 'red'
+    item.style.backgroundColor = 'Yellow';
   </script>
 </html>
