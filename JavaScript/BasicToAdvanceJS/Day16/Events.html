@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./1.css" />
+  </head>
+  <body>
+    <div class="box grandparent">
+      grandparent
+      <div class="box parent">
+        parent
+        <div class="box child">child</div>
+      </div>
+    </div>
+  </body>
+  <script>
+    let grandparent = document.querySelector(".grandparent");
+    let parent = document.querySelector(".parent");
+    let child = document.querySelector(".child");
+
+    grandparent.addEventListener("click", function (e) {
+      console.log("Grandparent clicked 1");
+      //   console.log(e.target);
+      // the element on which the event actually happend
+    });
+
+    parent.addEventListener("click", function (e) {
+      console.log("Parent clicked 1");
+      //   console.log(e.target);
+    });
+
+    child.addEventListener("click", function (e) {
+      console.log("child clicked 1");
+      console.log(e.target);
+    });
+
+    document.addEventListener("click", function (e) {
+      if (e.target.matches(".box")) {
+        console.log(e.target, "I am clicked");
+      }
+    });
+
+    // Listening to documents on load event
+    window.onload = function() {
+  console.log('Im loaded');
+};
+  </script>
+</html>

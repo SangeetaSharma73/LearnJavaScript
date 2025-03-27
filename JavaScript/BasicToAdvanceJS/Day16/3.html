@@ -1,0 +1,24 @@
+<input type="text" id="taskInput" placeholder="Enter task" />
+<button id="addTask">Add Task</button>
+<ul id="taskList"></ul>
+
+<script>
+  let input = document.getElementById("taskInput");
+  let button = document.getElementById("addTask");
+  let list = document.getElementById("taskList");
+
+  button.addEventListener("click", function () {
+    let task = input.value;
+    if (task !== "") {
+      let li = document.createElement("li");
+      li.innerText = task;
+
+      li.addEventListener("click", function () {
+        this.style.textDecoration = "line-through"; // Mark as done
+      });
+
+      list.appendChild(li);
+      input.value = "";
+    }
+  });
+</script>

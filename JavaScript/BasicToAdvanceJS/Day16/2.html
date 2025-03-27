@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./2.css" />
+  </head>
+  <body>
+    <!-- <button id="myButton">Button</button>
+    <input type="text" id="inputBox" placeholder="Type something..." />
+    <p id="output"></p>
+
+    <h1 id="hoverText">Hover over me!</h1>
+    <div>
+      <ul id="list">
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>Cherry</li>
+      </ul>
+    </div>
+
+    <button id="start">Start Animation</button>
+    <div id="box">this</div>
+
+    <button id="fadeBtn">Fade In</button> -->
+    <!-- <p id="text" style="opacity: 0">Hello, I'm fading in!</p> -->
+
+    <input type="text" id="taskInput" placeholder="Enter task" />
+    <button id="addTask">Add Task</button>
+    <ul id="taskList"></ul>
+  </body>
+  <script>
+    // let h1 = document.createElement("h1");
+    // h1.innerText = "this is my friend";
+    // document.body.append(h1);
+    // let myButton = document
+    //   .getElementById("myButton")
+    //   .addEventListener("click", (ele) => {
+    //     alert("button has clicked");
+    //   });
+
+    // document.getElementById("inputBox").addEventListener("keydown", (e) => {
+    //   document.getElementById("output").innerText = "You pressed    " + e.key;
+    // });
+
+    // let text = document.getElementById("hoverText");
+    // text.addEventListener("mouseover", () => {
+    //   text.style.color = "red";
+    // });
+
+    // text.addEventListener("mouseout", function () {
+    //   text.style.color = "blue";
+    // });
+
+    // let ul = document.getElementById("list");
+
+    // console.log(ul.parentNode); // Selects parent of <ul>
+    // console.log(ul.children); // Selects all <li> children
+    // console.log(ul.firstElementChild.innerText); // First <li> (Apple)
+    // console.log(ul.lastElementChild.innerText); // Last <li> (Cherry)
+
+    // let box = document.getElementById("box");
+    // let btn = document.getElementById("start");
+
+    // btn.addEventListener("click", function () {
+    //   let position = 300;
+    //   let interval = setInterval(() => {
+    //     if (position <= 50) {
+    //       clearInterval(interval); // Stop animation
+    //     } else {
+    //       position -= 5;
+    //       box.style.right = position + "px";
+    //     }
+    //   }, 50);
+    // });
+
+    // let fadeBtn = document.getElementById("fadeBtn");
+    // let text = document.getElementById("text");
+
+    // fadeBtn.addEventListener("click", function () {
+    //   let opacity = 0;
+    //   let fade = setInterval(() => {
+    //     if (opacity >= 1) clearInterval(fade);
+    //     text.style.opacity = opacity;
+    //     opacity += 0.1;
+    //   }, 100);
+    // });
+
+    let button = document.getElementById("addTask");
+    let list = document.getElementById("taskList");
+
+    button.addEventListener("click", function () {
+      let task = input.value;
+      if (task !== "") {
+        let li = document.createElement("li");
+        li.innerText = task;
+
+        li.addEventListener("click", function () {
+          this.style.textDecoration = "line-through"; // Mark as done
+        });
+
+        list.appendChild(li);
+        input.value = "";
+      }
+    });
+  </script>
+</html>

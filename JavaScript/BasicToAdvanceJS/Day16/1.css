@@ -1,0 +1,17 @@
+.box {
+  padding: 20px;
+}
+
+.grandparent {
+  background-color: dodgerblue;
+}
+
+.parent {
+  background-color: gold;
+}
+
+.child {
+  background-color: aliceblue;
+}
+
+
