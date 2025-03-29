@@ -7,7 +7,7 @@ console.log(Math.ceil(7.004)); // 8
 console.log(Math.max(1, 3, 2)); // 3
 console.log(Math.min(2, 3, 1)); // 1
 console.log(Math.random());
-
+console.log("hi")
 
 
 // ### String

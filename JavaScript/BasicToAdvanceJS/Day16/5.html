@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch the Moving Button</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        #game-container {
+            width: 80vw;
+            height: 60vh;
+            margin: auto;
+            border: 2px solid black;
+            position: relative;
+            overflow: hidden;
+        }
+        #moving-button {
+            position: absolute;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: crimson;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #score {
+            font-size: 24px;
+            margin: 10px;
+        }
+        #timer {
+            font-size: 20px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Catch the Moving Button Game 🎯</h1>
+    <p>Click the button as many times as you can before time runs out!</p>
+    <h2 id="score">Score: 0</h2>
+    <h2 id="timer">Time Left: 10s</h2>
+    
+    <div id="game-container">
+        <button id="moving-button">Catch Me!</button>
+    </div>
+
+    <script>
+        let score = 0;
+        let timeLeft = 20;
+        let gameRunning = true;
+
+        let gameContainer = document.getElementById("game-container");
+        let button = document.getElementById("moving-button");
+        let scoreDisplay = document.getElementById("score");
+        let timerDisplay = document.getElementById("timer");
+
+        // Function to move button randomly
+        function moveButton() {
+            if (!gameRunning) return;
+
+            let maxX = gameContainer.clientWidth - button.clientWidth;
+            let maxY = gameContainer.clientHeight - button.clientHeight;
+
+            let randomX = Math.floor(Math.random() * maxX);
+            let randomY = Math.floor(Math.random() * maxY);
+
+            button.style.left = randomX + "px";
+            button.style.top = randomY + "px";
+        }
+
+        // Function to increase score
+        button.addEventListener("click", function() {
+            if (!gameRunning) return;
+
+            score++;
+            scoreDisplay.innerText = "Score: " + score;
+            moveButton(); // Move button after each click
+        });
+
+        // Timer function
+        let countdown = setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft-=0.5;
+                timerDisplay.innerText = "Time Left: " + timeLeft + "s";
+            } else {
+                clearInterval(countdown);
+                gameRunning = false;
+                button.style.display = "none"; // Hide button after game ends
+                alert("Time's up! Your final score is: " + score);
+            }
+        }, 1000);
+
+        // Move button every second
+        setInterval(moveButton, 1000);
+    </script>
+
+</body>
+</html>
