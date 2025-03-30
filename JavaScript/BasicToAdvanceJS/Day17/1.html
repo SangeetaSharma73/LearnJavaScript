@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="myButton">Click Me</button>
+    <input type="text" id="myInput" placeholder="Type here..." />
+    <input type="checkbox" id="myCheckbox" /> Check me
+
+    <input type="radio" name="option" id="option1" value="1" /> Option 1
+    <input type="radio" name="option" id="option2" value="2" /> Option 2
+    hi how are you
+    <select id="mySelect">
+      <option value="apple">Apple</option>
+      <option value="banana">Banana</option>
+      <option value="cherry">Cherry</option>
+    </select>
+    
+    <textarea id="myTextarea" rows="4" cols="50"></textarea>
+
+    <a id="myLink" href="<https://example.com>">Visit Site</a>
+  
+
+
+
+    <form id="myForm">
+  <input type="text" name="username" placeholder="Username">
+  <button type="submit">Submit</button>
+</form>
+  
+
+  <div id="myDiv">This is a div element.</div>
+  
+  </body>
+  <script>
+    // Access the button element
+    const button = document.getElementById("myButton");
+
+    // Add a click event listener
+    button.addEventListener("click", function () {
+      alert("Button was clicked!");
+    });
+
+    //2.text
+    // Access the input element
+    const input = document.getElementById("myInput");
+
+    // Get the current value
+    let currentValue = input.value;
+
+    // Add an input event listener
+    input.addEventListener("input", function () {
+      console.log("Current value:", input.value);
+    });
+
+    //3.checkbox
+    // Access the checkbox element
+    const checkbox = document.getElementById("myCheckbox");
+
+    // Check the checkbox
+    checkbox.checked = true;
+
+    // Uncheck the checkbox
+    checkbox.checked = false;
+
+    // Get the current state
+    let isChecked = checkbox.checked;
+
+    // Add a change event listener
+    checkbox.addEventListener("change", function () {
+      console.log("Checkbox is checked:", checkbox.checked);
+    });
+
+    //4.radio
+    // Access radio buttons
+    const option1 = document.getElementById("option1");
+    const option2 = document.getElementById("option2");
+
+    // Check a radio button
+    option1.checked = true;
+    option1.value = "i am the option1";
+
+    // Get the selected value
+    let selectedValue = document.querySelector(
+      'input[name="option"]:checked'
+    ).value;
+
+    // Add a change event listener
+    option1.addEventListener("change", updateSelection);
+    option2.addEventListener("change", updateSelection);
+
+    function updateSelection() {
+      let selected = document.querySelector('input[name="option"]:checked');
+      console.log("Selected value:", selected.value);
+    }
+
+    //5.dropdown
+    // Access the select element
+    const select = document.getElementById("mySelect");
+
+    // Get the selected value
+    // let selectedValue1 = select.value;
+
+    // // Set a selected value
+    // select.value = 'banana';
+
+    // Add a change event listener
+    select.addEventListener("change", function () {
+      console.log("Selected fruit:", select.value);
+    });
+
+    // textarea: Access the textarea element
+    const textarea = document.getElementById("myTextarea");
+
+    // Get the current text
+    let currentText = textarea.value;
+
+    // Set text
+    textarea.value = "Hello, world!";
+
+    // Add an input event listener
+    textarea.addEventListener("input", function () {
+      console.log("Current text:", textarea.value);
+    });
+
+    //7.anchor tag
+    // Access the link element
+    const link = document.getElementById("myLink");
+
+    // Change the href attribute
+    link.href = "<https://openai.com>";
+
+    // Add a click event listener
+    link.addEventListener("click", function (event) {
+    
+      console.log("Link was clicked, but default action prevented.");
+    });
+
+
+
+    // Access the form element
+const form = document.getElementById('myForm');
+
+// Add a submit event listener
+form.addEventListener('submit', function(event) {
+ event.preventDefault(); // Prevent form from submitting
+  const formData = new FormData(form);
+  const username = formData.get('username');
+  console.log('Form submitted with username:', username);
+});
+  
+  // Access the div element
+const div = document.getElementById('myDiv');
+
+// Change the content
+div.textContent = 'Content has been changed.';
+
+// Add a mouseover event listener
+div.addEventListener('mouseover', function() {
+  div.style.backgroundColor = 'lightblue';
+});
+
+// Add a mouseout event listener
+div.addEventListener('mouseout', function() {
+  div.style.backgroundColor = 'black';
+  div.style.color='white'
+});
+  
+  </script>
+</html>
