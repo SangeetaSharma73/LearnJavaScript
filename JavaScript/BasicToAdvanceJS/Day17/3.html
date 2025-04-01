@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login System</title>
+</head>
+<body>
+    <h2>Register</h2>
+    <input type="text" id="regUsername" placeholder="Enter Username">
+    <input type="password" id="regPassword" placeholder="Enter Password">
+    <button onclick="register()">Register</button>
+
+    <h2>Login</h2>
+    <input type="text" id="loginUsername" placeholder="Enter Username">
+    <input type="password" id="loginPassword" placeholder="Enter Password">
+    <button onclick="login()">Login</button>
+
+    <h2>Welcome</h2>
+    <p id="welcomeMessage"></p>
+    <button onclick="logout()">Logout</button>
+
+    <script>
+        // Register User
+        function register() {
+            let username = document.getElementById("regUsername").value;
+            let password = document.getElementById("regPassword").value;
+
+            if (username && password) {
+                localStorage.setItem("username", username);
+                localStorage.setItem("password", password);
+                alert("User registered successfully!");
+            } else {
+                alert("Please enter both username and password.");
+            }
+        }
+
+        // Login User
+        function login() {
+            let username = document.getElementById("loginUsername").value;
+            let password = document.getElementById("loginPassword").value;
+
+            let storedUsername = localStorage.getItem("username");
+            let storedPassword = localStorage.getItem("password");
+
+            if (username === storedUsername && password === storedPassword) {
+                localStorage.setItem("loggedIn", "true");
+                document.getElementById("welcomeMessage").innerText = "Welcome, " + username;
+                alert("Login successful!");
+            } else {
+                alert("Invalid credentials! Please try again.");
+            }
+        }
+
+        // Logout User
+        function logout() {
+            localStorage.removeItem("loggedIn");
+            document.getElementById("welcomeMessage").innerText = "";
+            alert("You have logged out.");
+        }
+    </script>
+</body>
+</html>

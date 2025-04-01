@@ -1,4 +1,4 @@
-🚀 JavaScript LocalStorage (With Examples!)
+🚀  LocalStorage (With Examples!)
 LocalStorage is a browser storage that lets you store data even after the user closes the browser.
 
 ✅ Key Features
@@ -15,9 +15,9 @@ localStorage.clear()	Removes all stored data
 localStorage.length	Returns the number of stored items
 localStorage.key(index)	Gets key by index
 🔹 Example 1: Storing & Retrieving Simple Data
-javascript
-Copy
-Edit
+
+
+
 // Store data
 localStorage.setItem("username", "Sangeeta");
 
@@ -33,9 +33,9 @@ localStorage.clear();
 🔹 Example 2: Storing & Retrieving Objects
 LocalStorage only stores strings, so we must convert objects using JSON.stringify() and JSON.parse().
 
-javascript
-Copy
-Edit
+
+
+
 // Create an object
 let user = {
     name: "Sangeeta",
@@ -50,9 +50,9 @@ localStorage.setItem("user", JSON.stringify(user));
 let retrievedUser = JSON.parse(localStorage.getItem("user"));
 console.log(retrievedUser.name); // Output: Sangeeta
 🔹 Example 3: Saving a To-Do List in LocalStorage
-html
-Copy
-Edit
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,6 +94,7 @@ Edit
     </script>
 </body>
 </html>
+ 
 ✅ Your tasks will remain saved even if you refresh the page! 🎉
 
 📌 When to Use LocalStorage?
