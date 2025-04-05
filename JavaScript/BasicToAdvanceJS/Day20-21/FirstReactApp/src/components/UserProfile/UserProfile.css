@@ -1,0 +1,10 @@
+.userProfile {
+  margin: 10px;
+  width: 180px;
+  height: 180px;
+  box-shadow: 10px 5px 5px rgb(197, 178, 214);
+}
+
+.userProfile > img {
+  width: 100%;
+}
