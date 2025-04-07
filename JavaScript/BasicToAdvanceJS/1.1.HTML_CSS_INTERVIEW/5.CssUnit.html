@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* em explain */
+      .parent1 {
+        font-size: 20px;
+      }
+      .child1 {
+        font-size: 2em;
+      }
+
+      /* rem explain */
+      /* html {
+        font-size: 16px;
+      } */
+      p {
+        font-size: 2rem; /* 2 * 16 = 32px */
+      }
+
+      /* percent */
+
+      .parent3 {
+        width: 400px;
+        border: 2px solid black;
+      }
+      .child3 {
+        border: 2px solid red;
+        width: 50%; /* = 200px */
+      }
+
+      /* vh , vw */
+
+      .box {
+        width: 50vw; /* full screen width */
+        height: 50vh; /* full screen height */
+        border: 5px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 🔹 2. em
+📐 Relative to parent element’s font-size. -->
+    <!-- ➡️ 2em = 2 × parent font-size
+
+⚠️ Careful: padding, margin bhi em mein de sakte ho, lekin it changes based on nested parents. -->
+
+    <div class="parent1">
+      How are you guys?
+      <div class="child1">Hi Babita , Sabita and Bhanu!</div>
+    </div>
+
+    <!-- 🔹 3. rem (Root em)
+📐 Relative to html element’s font-size (root).
+2rem= 2 * 16 = 32px 
+if html{font-size:16px}
+By default: -->
+    <div class="parent2">
+      <p>How are you guys? rem</p>
+      <div class="child2">Hi Babita , Sabita and Bhanu! rem</div>
+    </div>
+
+    <!-- 🔹 4. % (Percentage)
+📊 Relative to parent’s size.
+
+Example: -->
+
+    <div class="parent3">
+      Hi Parent3 How are you?
+      <div class="child3">Hi Babita , Sabita and Bhanu!</div>
+    </div>
+
+    <!-- 🔹 5. vh and vw
+1vh = 1% of viewport height
+
+1vw = 1% of viewport width
+
+📱 Viewport = visible screen area -->
+    <div class="box">hi bro how are you</div>
+  </body>
+</html>
