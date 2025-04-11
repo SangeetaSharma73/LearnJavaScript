@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskManager-Deleted Task</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Manrope:wght@200..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <p>Masai-Task-Manager</p>
+        <p><a href="./home.html">Home</a></p>
+        <p><a href="./deleted.html">Deleted Tasks</a></p>
+      </nav>
+    </header>
+
+    <div id="delete-container">
+      <h1>Deleted Tasks</h1>
+      <br>
+      <div>
+        <select id="FilterPriority">
+            Filter By Priority
+            
+          <option value="">Low</option>
+          <option value="">Medium</option>
+          <option value="">Hard</option>
+        </select>
+        <select id="FilterStatus">
+            Filter By Status
+          <option value="">Pending</option>
+          <option value="">In-Progress</option>
+          <option value="">Completed</option>
+        </select>
+      </div>
+
+      <div class="deletedTask">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th>Restore</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+
+  <script src="./home.js"></script>
+</html>

@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background-color: #dbd6d6;
+}
+
+header > nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background-color: green;
+}
+
+header > nav > p {
+  padding-top: 1%;
+  padding-bottom: 1%;
+  font-weight: 500;
+  background-color: green;
+  font-size: 18px;
+}
+p > a {
+  text-decoration: none;
+  color: white;
+}
+
+header > nav > p:first-child {
+  color: black;
+}
+
+#container {
+  border: 2px solid black;
+  margin: 3% auto 0 auto;
+  width: 70%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 4% 5% 4% 5%;
+  gap: 60px;
+  display: flex;
+}
+
+#container .left {
+  width: 25%;
+  padding: 20px;
+  text-align: center;
+  border: 2px solid grey;
+  border-radius: 8px;
+}
+
+#container .left > input,
+select,
+button {
+  border-radius: 6px;
+  padding: 10px;
+}
+#container .left > input {
+  width: 70%;
+  font-size: 16px;
+}
+#container .left > select {
+  width: 65%;
+  font-size: 16px;
+  margin-top: 15px;
+}
+#container .left > button {
+  width: 50%;
+  margin-top: 15px;
+  background-color: green;
+  color: white;
+  font-size: 16px;
+}
+
+#container .right {
+  width: 65%;
+  border: 2px solid red;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+thead {
+  background-color: green;
+  color: white;
+}
+
+table th,
+table td {
+  padding: 8px;
+}
+
+
+#delete-container{
+  border: 2px solid black;
+  margin: 3% auto 0 auto;
+  width: 70%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 4% 5% 4% 5%;
+}
+
+#delete-container>div>select:first-child{
+ margin-right: 20px;
+}
+
+#delete-container>#deltedTask{
+  margin-top: 20px;
+}

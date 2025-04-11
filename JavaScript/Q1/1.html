@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RGB Color Mixer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .color-box {
+        width: 200px;
+        height: 200px;
+        margin: 20px auto;
+        border: 2px solid #000;
+        background-color: rgb(255, 0, 0);
+      }
+
+      .rgb-inputs {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+
+      label {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🎨 RGB Color Mixer</h1>
+    <div class="color-box"></div>
+
+    <div class="rgb-inputs">
+      <label for="red">Red:</label>
+      <input type="range" id="red" min="0" max="255" value="255" />
+
+      <label for="green">Green:</label>
+      <input type="range" id="green" min="0" max="255" value="0" />
+
+      <label for="blue">Blue:</label>
+      <input type="range" id="blue" min="0" max="255" value="0" />
+    </div>
+
+    <script>
+      const colorBox = document.querySelector(".color-box");
+      const redInput = document.getElementById("red");
+      const greenInput = document.getElementById("green");
+      const blueInput = document.getElementById("blue");
+
+      redInput.addEventListener("input", updateColor);
+      greenInput.addEventListener("input", updateColor);
+      blueInput.addEventListener("input", updateColor);
+
+      function updateColor() {
+        const r = redInput.value;
+        const g = greenInput.value;
+        const b = blueInput.value;
+
+        const rgbColor = `rgb(${r}, ${g}, ${b})`;
+        colorBox.style.backgroundColor = rgbColor;
+      }
+
+      // Call once initially to set starting color
+      updateColor();
+    </script>
+  </body>
+</html>
