@@ -15,6 +15,7 @@ export const ResetPassword = () => {
   const onSubmit = async (data) => {
     try {
       const response = await fetch(
+        // `https://learnjavascript.onrender.com/api/auth/reset-password/${token}`,
         `http://localhost:8000/api/auth/reset-password/${token}`,
         {
           method: "POST",

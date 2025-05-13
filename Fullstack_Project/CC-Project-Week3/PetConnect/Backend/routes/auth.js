@@ -110,7 +110,7 @@ router.post("/login", async (req, res) => {
       return res.status(400).json({ msg: "Invalid email or password" });
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "2h",
+      expiresIn: "24h",
     });
 
     res.json({
@@ -166,7 +166,6 @@ router.post("/forgot-password", async (req, res) => {
   }
 });
 
-
 // Reset Password Route
 router.post("/reset-password/:token", async (req, res) => {
   const { token } = req.params;
@@ -194,6 +193,5 @@ router.post("/reset-password/:token", async (req, res) => {
     res.status(500).json({ msg: "Server error. Please try again later." });
   }
 });
-
 
 module.exports = router;

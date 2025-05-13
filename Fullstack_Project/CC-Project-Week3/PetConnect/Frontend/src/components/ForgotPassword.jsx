@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-
-
 export const ForgotPassword = () => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
@@ -16,6 +14,7 @@ export const ForgotPassword = () => {
   const onSubmit = async (data) => {
     try {
       const response = await fetch(
+        // "https://learnjavascript.onrender.com/api/auth/forgot-password",
         "http://localhost:8000/api/auth/forgot-password",
         {
           method: "POST",
