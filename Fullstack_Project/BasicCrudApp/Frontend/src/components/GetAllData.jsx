@@ -51,6 +51,7 @@ function GetAllData() {
               Delete Post
             </button>
             <button
+              onClick={() => navigate(`/post/${post._id}`)}
               style={{
                 color: "white",
                 backgroundColor: "green",
