@@ -87,7 +87,7 @@ setTimeout(greet, 1000, "John"); //
 //9.
 const a = [1, 2, 3];
 const b1 = a.map((x) => x * 2).filter((x) => x > 4);
-console.log(b1); //[9] : because first it map the value and replace with squares and then filter out which is greater than 4
+console.log(b1); //[6] : because first it map the value and replace with squares and then filter out which is greater than 4
 
 //10.
 let foo = "bar";
@@ -101,7 +101,8 @@ test(); //undefined: it is because foo is defined with var keyword and it is hoi
 const a = [1, 2, 3];
 const b2 = [...a];
 b2.push(4);
-console.log(a); //[1,2,3] //because b2 contains the element same as a but not reference so what changes will be in b2 not affected to a
+console.log(a); //[1,2,3] //b2 is a shallow copy of a using the spread operator
+//Changing b2 doesn’t affect a
 
 //12.
 let x1 = 10;
@@ -114,6 +115,141 @@ console.log(x1); //20 : because value will be reassigned  as 20 in function
 
 //13.
 let a = { name: "John" };
-let b = Object.assign({}, a);
-b.name = "Doe";
-console.log(a.name);
+let b3 = Object.assign({}, a);
+b3.name = "Doe";
+console.log(a.name); //John
+// ✅ Explanation (improved version):
+// Object.assign({}, a) creates a shallow copy of object a into b3.
+
+// Since the property name is a primitive value (string), it's copied by value, not by reference.
+
+// Changing b3.name does not affect a.name.
+
+//14.
+function multiply(a, b) {
+  return a * b;
+}
+const double = multiply.bind(null, 2);
+console.log(double(5)); //10
+//🔍 Explanation:
+// Function.prototype.bind() creates a new function with the first argument (a) preset to 2.
+
+// null is passed as the first argument to bind because multiply does not use this, so this context is irrelevant.
+
+// double(5) is equivalent to calling multiply(2, 5), so it returns 10.
+
+//15.
+const obj1 = {
+  foo: function () {
+    setTimeout(() => console.log(this), 1000);
+  },
+};
+obj1.foo(); //{ foo: [Function: foo] }
+
+//🔍 Explanation:
+// obj1.foo() is called, so this inside foo refers to obj1.
+
+// Inside foo, a setTimeout is used with an arrow function as the callback.
+
+// Arrow functions do not have their own this. Instead, they lexically bind this — they inherit this from their enclosing scope.
+
+// The enclosing scope is the foo method, where this is obj1.
+
+// ✅ So, this inside the arrow function is obj1.
+// Hence, after 1 second, console.log(this) prints the obj1 object.
+
+//16.
+let result = (function (a, b) {
+  return a + b;
+})(2, 3);
+console.log(result); //5 : because of IIFE
+//🔍 Explanation:
+// This is an Immediately Invoked Function Expression (IIFE):
+
+// let result = (function (a, b) {
+//   return a + b;
+// })(2, 3);
+// The function (function(a, b) { return a + b; }) is defined and immediately executed with arguments 2 and 3.
+
+// Inside the function:
+// return a + b; // 2 + 3 = 5
+// The result 5 is assigned to the variable result.
+
+//17.
+var a = 5;
+(function () {
+  var a = 10;
+  console.log(a); //10
+})();
+console.log(a); //5
+//🔍 Explanation:
+// var a = 5;
+// Global variable a is assigned the value 5.
+
+// (function () { var a = 10; console.log(a); })();
+// This is an Immediately Invoked Function Expression (IIFE).
+// Inside the function, a new local a variable is declared with var and set to 10.
+// So console.log(a) inside the function logs 10.
+
+// console.log(a);
+// This is outside the IIFE, so it logs the global a, which is still 5.
+
+//18.
+console.log(typeof typeof 1); // string
+//Because:
+// typeof 1 → "number"
+// typeof "number" → "string"
+
+//19.
+console.log(0.1 + 0.2 === 0.3); //false
+//✅ Output:
+// false
+// 🔍 Explanation:
+// This is a classic example of floating-point precision error in JavaScript (and many other programming languages).
+
+// 💡 Here's what happens:
+
+// 0.1 + 0.2 === 0.3
+// You'd expect this to be true, but it isn't. Why?
+
+// Internally:
+
+// 0.1 + 0.2 = 0.30000000000000004
+// So:
+
+// 0.30000000000000004 === 0.3 // false
+// 🤯 Why does this happen?
+// JavaScript uses IEEE 754 double-precision floating-point numbers.
+
+// Some decimal fractions cannot be represented exactly in binary.
+
+// Numbers like 0.1 and 0.2 have repeating binary representations, so their sum results in a tiny rounding error.
+
+// ✅ Correct approach for comparison:
+// If you need to compare floating-point numbers:
+
+// Math.abs(0.1 + 0.2 - 0.3) < Number.EPSILON // true
+
+//20.
+console.log("5" - 3); //2
+// 🔍 Explanation:
+// 1. console.log("5" - 3);
+// JavaScript uses type coercion when operators involve mixed types.
+
+// The - operator forces both operands to be numbers.
+
+// "5" is a string, but it's coerced into a number: Number("5") → 5
+
+// So: 5 - 3 → 2
+// ✅ Output: 2
+console.log("5" + 3);
+// 2. console.log("5" + 3);
+// The + operator behaves differently:
+
+// If either operand is a string, it performs string concatenation.
+
+// "5" is a string, so:
+
+// "5" + 3 → "5" + "3" → "53"
+
+// ✅ Output: "53"
