@@ -1,9 +1,7 @@
 const fs = require("fs");
 const readline = require("readline");
-
 // Create a readable stream from the file
 const fileStream = fs.createReadStream("./read.txt", "utf-8");
-
 // Create readline interface using the file stream as input
 const rl = readline.createInterface({
   input: fileStream,
