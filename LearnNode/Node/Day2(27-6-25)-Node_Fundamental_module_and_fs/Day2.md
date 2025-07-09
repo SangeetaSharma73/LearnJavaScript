@@ -22,7 +22,17 @@ Work with the file system — reading, writing, deleting files.
 - Write to a file
 - Append to a file
 
-// fs.readFile(path, encoding, callback)
+// fs.readFile(path, , callback) 2. Binary Buffer Array (Buffer)
+What it is:
+A Buffer is a raw memory allocation of bytes, not yet interpreted as characters. It’s essentially an array of binary data.
+
+In Node.js:
+If you don’t provide an encoding when reading a file, Node returns a Buffer.
+
+Use Cases:
+Useful for working with binary files (images, PDFs, etc.) or doing low-level byte manipulation.
+
+<!-- fs.readFileSync(path) -->
 
 - readFile takes a file path and a callback
 - gives you the data in the callback
@@ -61,6 +71,25 @@ console.log(fullPath);
 ```
 
 - Resolve relative vs absolute paths
+
+### Absolute Paths:
+
+- An absolute path specifies the complete location of a file or directory, starting from the root directory of the file system (e.g., / on Unix-like systems or `C:\` on Windows).
+- It provides a unique and unambiguous way to locate resources regardless of the current working directory.
+- For example, on a Unix-like system, /home/user/documents/report.txt is an absolute path.
+
+```txt
+On Windows, C:\Users\User\Documents\report.txt is an absolute path.
+```
+
+### Relative Paths:
+
+- A relative path specifies the location of a file or directory in relation to the current working directory.
+- It doesn't include the full path from the root, making it dependent on the current context.
+- Relative paths use special notations:
+- . (dot) refers to the current directory.
+- .. (double dot) refers to the parent directory.
+- For example, if the current directory is /home/user, then documents/report.txt is a relative path that refers to /home/user/documents/report.txt.
 
 ```js
 const absolutePath = path.resolve("folder", "file.txt");
@@ -170,3 +199,54 @@ const http = require("http");
 ```
 
 These modules are always available, no npm install needed.
+
+. ASCII Value
+What it is:
+ASCII is a character encoding standard using 7 bits to represent characters (values 0–127). It covers basic English letters, digits, and punctuation.
+
+In Node.js:
+When you read a file as 'ascii', Node interprets bytes as characters directly based on the ASCII table.
+
+Limitations:
+Only works correctly for English and very basic symbols. Not suitable for international characters or emojis.
+
+Example:
+
+js
+Copy
+Edit
+const data = fs.readFileSync('file.txt', 'ascii');
+console.log(data); // Outputs readable ASCII text 2. Binary Buffer Array (Buffer)
+What it is:
+A Buffer is a raw memory allocation of bytes, not yet interpreted as characters. It’s essentially an array of binary data.
+
+In Node.js:
+If you don’t provide an encoding when reading a file, Node returns a Buffer.
+
+Use Cases:
+Useful for working with binary files (images, PDFs, etc.) or doing low-level byte manipulation.
+
+Example:
+
+js
+Copy
+Edit
+const buffer = fs.readFileSync('file.txt');
+console.log(buffer); // <Buffer 48 65 6c 6c 6f ...>
+console.log(buffer[0]); // 72 (decimal ASCII code for first byte) 3. UTF-8
+What it is:
+UTF-8 is a variable-length character encoding for Unicode. It supports all characters in every human language.
+
+In Node.js:
+If you read a file as 'utf8', Node interprets the bytes as a UTF-8 encoded string.
+
+Advantages:
+Supports special characters, emojis, non-English scripts, etc.
+
+Example:
+
+js
+Copy
+Edit
+const text = fs.readFileSync('file.txt', 'utf8');
+console.log(text); // Properly shows characters like é, 中, or 😊

@@ -1,4 +1,5 @@
 const fs = require("fs");
+const os = require("os");
 
 //reading a file
 fs.readFile("./file.txt", "utf-8", (error, data) => {
