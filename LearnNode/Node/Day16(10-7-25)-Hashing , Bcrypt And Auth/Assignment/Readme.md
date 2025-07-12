@@ -138,7 +138,7 @@ const User = require("../models/user.model");
 
 ## services
 
-### 📁 File: src/services/user.service.js
+## 📁 File: src/services/user.service.js
 
 This file exports a User Service, which includes four asynchronous functions for handling CRUD operations on user data.
 
@@ -281,6 +281,90 @@ module.exports = {
   deleteUser,
 };
 ```
+
+Explanation:
+const userService = require("../services/user.service");
+Imports the userService module, which likely contains functions to interact with the database or perform business logic for users (e.g., create, read, update, delete users).
+
+const catchAsync = require("../utils/catchAsync");
+Imports a utility function catchAsync which wraps asynchronous route handlers to automatically catch and forward errors to the global error handler, so you don’t need to write try/catch blocks in each controller.
+
+const httpStatus = require("../services/user.service");
+⚠️ Problem: This line mistakenly re-imports userService instead of httpStatus.
+
+It should be something like:
+
+const httpStatus = require("http-status");
+http-status is a library that provides human-readable HTTP status codes, e.g., httpStatus.OK (200), httpStatus.NOT_FOUND (404), etc.
+
+const getUserById = catchAsync(async (req, res) => {
+Defines the getUserById controller wrapped in catchAsync. It handles GET /api/users/:id.
+
+const user = await userService.getUserById(req.params.id);
+Calls a method to fetch a user by their ID from the userService.
+
+if (!user)
+return res.status(httpStatus.NOT_FOUND).json({ msg: "User not found" });
+If the user doesn't exist, respond with a 404 Not Found and a message.
+
+res.status(httpStatus.OK).json(user);
+If user is found, respond with 200 OK and the user data in JSON format.
+
+});
+Ends the getUserById function.
+
+const createUser = catchAsync(async (req, res) => {
+Defines the createUser controller wrapped in catchAsync. It handles POST /api/users/.
+
+const user = await userService.createUser(req.body);
+Calls the service to create a new user with data from the request body.
+
+res.status(httpStatus.CREATED).json(user);
+Responds with 201 Created and the newly created user.
+
+});
+Ends the createUser function.
+
+const updateUser = catchAsync(async (req, res) => {
+Defines the updateUser controller. It handles PUT /api/users/:id.
+
+const updateUser = await userService.updateUser(req.params.id, req.body);
+Attempts to update a user using ID and new data. The returned object is the updated user.
+
+if (!updateUser)
+return res.status(httpStatus.NOT_FOUND).json({ message: "USer not found" });
+If update fails (e.g., user not found), respond with 404.
+
+res.status(httpStatus.OK).json(updateUser);
+If successful, respond with 200 OK and the updated user data.
+
+});
+Ends the updateUser function.
+
+const deleteUser = catchAsync(async (req, res) => {
+Defines the deleteUser controller. It handles DELETE /api/users/:id.
+
+const result = await userService.deleteUser(req.params.id);
+Calls the service to delete the user with the provided ID.
+
+if (!result) {
+return res.status(httpStatus.NOT_FOUND).json({ message: "User not found" });
+}
+If deletion fails (e.g., user not found), respond with 404.
+
+res.status(httpStatus.NO_CONTENT).send();
+If deletion is successful, respond with 204 No Content (indicates success with no response body).
+
+});
+Ends the deleteUser function.
+
+module.exports = {
+getUserById,
+createUser,
+updateUser,
+deleteUser,
+};
+Exports the controllers so they can be used in the route definitions (e.g., in routes/user.routes.js).
 
 ## 📁 File: src/middlewares/validate.js
 
@@ -549,3 +633,120 @@ router.get("/users/:userId", validate(getUserSchema), async (req, res) => {
   res.send("User fetched!");
 });
 ```
+
+## src/routes/user.controller.js
+
+```js
+const express = require("express");
+const userController = require("../controllers/user.controller");
+const validate = require("../middlewares/validate");
+const userValidation = require("../validations/user.validation");
+
+const router = express.Router();
+
+router.get("/", userController.getAll);
+
+// GET /api/users/:id
+router.get("/:id", userController.getUserById);
+
+// POST /api/users
+router.post(
+  "/",
+  validate(userValidation.createUser),
+  userController.createUser
+);
+
+// PUT /api/users/:id
+router.put(
+  "/:id",
+  validate(userValidation.updateUser),
+  userController.updateUser
+);
+
+// DELETE /api/users/:id
+router.delete("/:id", userController.deleteUser);
+
+module.exports = router;
+```
+
+```js
+const express = require("express");
+```
+
+- Imports the Express framework, which is used to build web applications and APIs in Node.js.
+
+```js
+const userController = require("../controllers/user.controller");
+```
+
+- Imports the controller that contains the logic for handling user-related requests (like fetching, creating, updating, deleting users).
+
+```js
+const validate = require("../middlewares/validate");
+```
+
+- Imports a middleware function that performs request validation using schemas (usually with Joi, Yup, or another validation library).
+
+```js
+const userValidation = require("../validations/user.validation");
+```
+
+- Imports the user-specific validation rules/schemas, such as what's required for creating or updating a user.
+
+```js
+const router = express.Router();
+```
+
+- Creates a new router instance using Express. This router will define user-related routes.
+
+```js
+router.get("/", userController.getAll);
+```
+
+- Defines a route for GET /api/users
+- Calls getAll method in the controller (though note: this method is not defined in the controller you previously shared — you may need to add it if it's missing).
+
+```js
+// GET /api/users/:id
+router.get("/:id", userController.getUserById);
+```
+
+- Defines a route for GET /api/users/:id
+- Calls the getUserById controller to fetch a single user by ID.
+
+```js
+router.post(
+  "/",
+  validate(userValidation.createUser),
+  userController.createUser
+);
+```
+
+- Defines a route for POST /api/users
+- First, it runs validation using the createUser schema (likely to check things like name, email, etc.).
+- Then, it calls the createUser controller to create a new user.
+
+```js
+router.put(
+  "/:id",
+  validate(userValidation.updateUser),
+  userController.updateUser
+);
+```
+
+- Defines a route for PUT /api/users/:id
+- First, it validates the request body using the updateUser schema.
+- Then, it calls the updateUser controller to update the specified user's data.
+
+```js
+router.delete("/:id", userController.deleteUser);
+```
+
+- Defines a route for DELETE /api/users/:id
+- Calls the deleteUser controller to remove the user with the given ID.
+
+```js
+module.exports = router;
+```
+
+- Exports the router so it can be used in your main application (e.g., imported in app.js or server.js and used like app.use('/api/users', userRoutes)).
