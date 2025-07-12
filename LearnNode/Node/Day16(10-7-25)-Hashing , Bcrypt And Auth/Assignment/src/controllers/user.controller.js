@@ -3,11 +3,30 @@
 const userService = require("../services/user.service");
 const catchAsync = require("../utils/catchAsync");
 const httpStatus = require("http-status"); // Correct import for v2.x
-const user = require("../models/user.model");
+const User = require("../models/user.model");
 
 const getAll = async (req, res) => {
-  const users = await user.find();
-  res.json(users);
+  const limit = 5;
+  const page = parseInt(req.query.page) || 1;
+  try {
+    const { email, name } = req.query;
+    const query = {}; // Empty query object
+
+    if (email) query.email = email; // If email is passed, add to query
+    if (name) query.name = name; // If name is passed, add to query
+
+    const users = await User.find(query)
+      .skip((page - 1) * limit) // Skip records based on the page
+      .limit(limit); // Limit the number of records returned; // Query the database
+
+    if (users.length === 0) {
+      return res.status(404).json({ message: "No users found." });
+    }
+
+    return res.status(200).json(users); // Send the result back to the client
+  } catch (error) {
+    return res.status(500).json({ message: "Server error", error });
+  }
 };
 //GET /api/users/:id
 const getUserById = catchAsync(async (req, res) => {
