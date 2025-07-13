@@ -82,8 +82,8 @@ npm -v
 6. Code on Demand (Optional): The server can send executable code to the client (e.g., JavaScript) to extend its functionality. However, this is generally not recommended due to security concerns.
    REST API Introduction - GeeksforGeeks
    In essence, REST APIs leverage the existing infrastructure of the web (HTTP) to provide a simple, flexible, and scalable way to interact with resources. They are a popular choice for building web services due to their ease of use and efficiency.
-   What is REST API? - Naukri.com
-   20 May 2025 — Features of REST APIs REST APIs have several features that make them ideal for building modern web services. Here are t...
+   What is REST API?
+   — Features of REST APIs REST APIs have several features that make them ideal for building modern web services. Here are t...
 
 ## 🧩 What Are Microservices?
 

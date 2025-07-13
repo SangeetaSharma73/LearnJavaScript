@@ -97,6 +97,18 @@ console.log(absolutePath);
 // Output: /Users/you/project/folder/file.txt (depends on where you run it)
 ```
 
+- path.resolve(a, b) is a method in Node.js (part of the path module) that resolves a sequence of paths or path segments into an absolute path. It’s commonly used to create a full path that works across different operating systems (e.g., Windows, Linux, macOS), ensuring that your file paths are reliable and consistent.
+
+- Why we use path.resolve(a, b):
+  To get an absolute path:
+  It converts relative paths into an absolute path based on the current working directory.
+
+- To normalize and join paths:
+  It handles things like .. and . in paths correctly, cleaning up the path.
+
+- To avoid hardcoding paths:
+  Helps in writing code that's portable between machines and environments.
+
 - Get file extensions
 
 ```js

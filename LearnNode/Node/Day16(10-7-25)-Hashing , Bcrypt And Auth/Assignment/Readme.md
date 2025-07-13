@@ -634,7 +634,7 @@ router.get("/users/:userId", validate(getUserSchema), async (req, res) => {
 });
 ```
 
-## src/routes/user.controller.js
+## src/routes/user.routes.js
 
 ```js
 const express = require("express");
@@ -750,3 +750,197 @@ module.exports = router;
 ```
 
 - Exports the router so it can be used in your main application (e.g., imported in app.js or server.js and used like app.use('/api/users', userRoutes)).
+
+### src/validations/user.validation.js
+
+```js
+// src/validations/user.validation.js
+
+const Joi = require("joi");
+const objectId = require("./custom.validation").objectId;
+
+const createUser = {
+  body: Joi.object({
+    name: Joi.string().min(2).max(50).required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().min(8).required(),
+    role: Joi.string().valid("user", "admin"),
+  }),
+};
+
+const updateUser = {
+  body: Joi.object({
+    name: Joi.string().min(2).max(50),
+    email: Joi.string().email(),
+    password: Joi.string().min(8),
+    role: Joi.string().valid("user", "admin"),
+  }).min(1),
+};
+
+module.exports = {
+  createUser,
+  updateUser,
+};
+```
+
+Line-by-line Explanation:
+
+```js
+const Joi = require("joi");
+```
+
+- require("joi"): Imports the Joi library, a powerful schema description and data validation tool for JavaScript.
+- Purpose: This is the core library used to define and enforce input validation rules (e.g., string length, email format, required fields, etc.).
+
+```js
+const objectId = require("./custom.validation").objectId;
+```
+
+- require("./custom.validation"): Imports a local module named custom.validation.js located in the same directory.
+- .objectId: Extracts a specific custom validation function or schema (probably created using Joi extensions or a regex) meant to validate MongoDB ObjectIds.
+- Use: Even though objectId is not used in this file directly, it may be used elsewhere for routes where userId or similar identifiers are validated.
+
+```js
+const createUser = {
+```
+
+- Defines a Joi validation schema called createUser.
+- Purpose: To validate incoming request bodies when creating a new user (e.g., during registration or admin user creation).
+
+```js
+  body: Joi.object({
+```
+
+- Specifies that validation applies to the body of the HTTP request (typical in REST APIs).
+- Defines a Joi object schema for the body.
+
+```js
+    name: Joi.string().min(2).max(50).required(),
+```
+
+- Validates the name field:
+- Must be a string.
+- Minimum length: 2 characters.
+- Maximum length: 50 characters.
+- .required() means this field is mandatory.
+
+```js
+    email: Joi.string().email().required(),
+```
+
+- Validates the email field:
+- Must be a string.
+- Must follow the email format.
+- Required field.
+
+```js
+    password: Joi.string().min(8).required(),
+```
+
+- Validates the password field:
+- Must be a string.
+- Minimum length: 8 characters.
+- Required.
+
+```js
+    role: Joi.string().valid("user", "admin"),
+```
+
+- Validates the role field:
+- Must be a string.
+- Must be either "user" or "admin".
+- Not required by default (optional field unless marked .required()).
+
+```js
+  }),
+};
+```
+
+- Closes the Joi.object() and wraps it in the createUser schema definition.
+
+```js
+const updateUser = {
+```
+
+- Defines another validation schema named updateUser.
+- Purpose: To validate input for updating user data (e.g., profile updates).
+
+```js
+  body: Joi.object({
+```
+
+- Indicates that this validation is also for the request body.
+
+```js
+    name: Joi.string().min(2).max(50),
+```
+
+- Similar to createUser, but not required.
+- Allows optional updating of the name.
+
+```js
+    email: Joi.string().email(),
+```
+
+- Optional update of the email field, with validation for correct email format.
+
+```js
+    password: Joi.string().min(8),
+```
+
+- Optional password update, must be at least 8 characters if provided.
+
+```js
+    role: Joi.string().valid("user", "admin"),
+```
+
+- Optional update of the role, must still be either "user" or "admin" if present.
+
+```js
+  }).min(1),
+```
+
+- .min(1) ensures that at least one field must be provided during an update.
+- Prevents empty-body updates, which are typically meaningless.
+
+```js
+module.exports = {
+  createUser,
+  updateUser,
+};
+```
+
+- Exports the two schema objects (createUser and updateUser) so they can be used in route handlers or middleware (typically via something like validate(userValidation.createUser)).
+
+### src/validations/custom.validation.js
+
+```js
+const objectId = (value, helpers) => {
+```
+
+- You're defining a custom Joi validator function named objectId.
+- It takes two arguments:
+  - value: the value being validated (the string expected to be an ObjectId).
+  - helpers: Joi's helper object, which provides methods like .message() to customize error output.
+
+```js
+  if (!mongoose.Types.ObjectId.isValid(value)) {
+```
+
+- Uses Mongoose’s built-in method ObjectId.isValid() to check if the value is a valid 24-character hexadecimal ObjectId string (used by MongoDB).
+
+- Returns false if the value is invalid.
+
+```js
+return helpers.message('"{{#label}}" must be a valid ObjectId');
+```
+
+- If invalid, this line returns a custom Joi error message.
+
+- {{#label}} is a Joi placeholder — it will be replaced with the name of the field being validated (like userId or postId).
+
+```js
+return value;
+```
+
+- If the value is valid, simply return it — validation passes.

@@ -1,4 +1,4 @@
-# 📅 Day 17: Authentication Basics
+# 📅 Day 16: Authentication Basics
 
 ## ✅ Topics We'll Cover:
 
