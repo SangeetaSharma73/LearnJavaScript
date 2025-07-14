@@ -189,7 +189,7 @@ project/
 ## 🛠️ Example .env
 
 ```
-MONGO_URI=mongodb+srv://user:pass@cluster.mongodb.net/dbname
+MONGO_URI=DB
 PORT=10000
 CORS_ORIGIN=https://your-frontend-domain.com
 ```
