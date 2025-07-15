@@ -11,5 +11,7 @@ router.post("/login", auth, validate(loginSchema), authController.login);
 router.get("/admin", auth, authorizeRoles("admin"), (req, res) => {
   res.status(200).json({ message: "Welcome Admin!" });
 });
+router.get("/verify-email", authController.verifyEmail);
+router.post("/refresh-token", authController.refreshToken);
 
 module.exports = router;

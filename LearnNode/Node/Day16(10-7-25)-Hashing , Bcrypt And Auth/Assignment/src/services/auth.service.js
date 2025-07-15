@@ -8,3 +8,10 @@ exports.findUserByEmail = async (email) => {
   //   console.log(email, User.findOne({ email }));
   return await User.findOne({ email }).select("+password");
 };
+
+exports.findByEmailWithTokenVerification = async (token) => {
+  return await User.findOne({
+    emailVerificationToken: token,
+    emailVerificationTokenExpiration: { $gt: Date.now() },
+  });
+};
