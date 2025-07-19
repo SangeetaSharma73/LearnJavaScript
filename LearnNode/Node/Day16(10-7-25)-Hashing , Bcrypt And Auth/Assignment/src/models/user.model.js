@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema(
     role: { type: String, enum: ["user", "admin"], default: "user" },
     emailVerificationToken: { type: String },
     emailVerificationTokenExpiration: { type: Date },
-    isActive: { type: Boolean, default: false }, // // User is inactive until email is verified
+    isActive: { type: Boolean, default: false }, // User is inactive until email is verified
   },
   {
     timestamps: true,

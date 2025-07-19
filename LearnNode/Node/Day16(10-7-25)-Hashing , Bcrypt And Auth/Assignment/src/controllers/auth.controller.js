@@ -72,7 +72,7 @@ exports.login = async (req, res) => {
   // const token = generateToken(user);
   const accessToken = generateAccessToken(user);
   const refreshToken = generateRefreshToken(user);
-  console.log(accessToken, refreshToken);
+  // console.log(accessToken, refreshToken);
 
   res.status(200).json({
     user: { id: user._id, name: user.name, email: user.email },
@@ -85,7 +85,7 @@ exports.login = async (req, res) => {
 //verify-email
 exports.verifyEmail = async (req, res) => {
   const { token } = req.query;
-  console.log("token", token);
+  // console.log("token", token);
   const user = await authService.findByEmailWithTokenVerification(token);
 
   if (!user) {

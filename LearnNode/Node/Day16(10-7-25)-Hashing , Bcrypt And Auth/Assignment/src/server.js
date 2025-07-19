@@ -8,6 +8,7 @@ const PORT = process.env.PORT;
 app.use(express.json());
 
 app.use("/users", userRoutes);
+debugger; // <-- execution will pause here when debugging
 app.use("/api/auth", authRoutes);
 
 connectDB();

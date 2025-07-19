@@ -26,6 +26,25 @@
 - Uses non-blocking , event-driven architecture.
 
 **Event-driven architecture**
+Event Driven Architecture is a way of designing software where different parts of the system respond to events.
+An event is something that happens — like a user clicking a button, a file being uploaded, or a message arriving.
+
+Think of it like a doorbell system:
+
+Someone presses the doorbell (event).
+
+The bell rings (response).
+
+Someone answers the door (another response).
+
+In EDA:
+
+One part produces an event.
+
+Other parts listen for that event and act when it happens.
+
+This makes the system flexible and responsive.
+
 Event-driven architecture (EDA) is a software design pattern where applications are designed around events, which are changes in state or notifications of something happening. Instead of relying on synchronous request-response interactions, systems in EDA communicate by producing and consuming events, enabling real-time responsiveness and loose coupling between components.
 Here's a more detailed explanation:
 Key Concepts:
@@ -80,10 +99,11 @@ npm -v
 4. Uniform Interface: REST APIs use a standard interface for interactions, typically using HTTP methods (GET, POST, PUT, DELETE) to perform operations on resources. This consistency makes it easier for developers to understand and use the API.
 5. Layered System: REST APIs can be structured in layers, with intermediaries like load balancers or proxies. This allows for increased scalability, security, and flexibility.
 6. Code on Demand (Optional): The server can send executable code to the client (e.g., JavaScript) to extend its functionality. However, this is generally not recommended due to security concerns.
-   REST API Introduction - GeeksforGeeks
-   In essence, REST APIs leverage the existing infrastructure of the web (HTTP) to provide a simple, flexible, and scalable way to interact with resources. They are a popular choice for building web services due to their ease of use and efficiency.
-   What is REST API?
-   — Features of REST APIs REST APIs have several features that make them ideal for building modern web services. Here are t...
+
+**REST API Introduction** -
+In essence, REST APIs leverage the existing infrastructure of the web (HTTP) to provide a simple, flexible, and scalable way to interact with resources. They are a popular choice for building web services due to their ease of use and efficiency.
+What is REST API?
+— Features of REST APIs REST APIs have several features that make them ideal for building modern web services. Here are t...
 
 ## 🧩 What Are Microservices?
 
