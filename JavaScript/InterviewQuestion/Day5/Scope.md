@@ -96,4 +96,4 @@ Think of scope like rooms in a house:
 
 - **Global Scope** = The entire house. Anyone (function) can access things here.
 - **Local Scope** = A private room. Only the person in that room (function) can see its contents.
-- **Block Scope** = A locked cabinet inside a room (block). Only the code inside that
+- **Block Scope** = A locked cabinet inside a room (block). Only the code inside that cabinet can access what's inside.
