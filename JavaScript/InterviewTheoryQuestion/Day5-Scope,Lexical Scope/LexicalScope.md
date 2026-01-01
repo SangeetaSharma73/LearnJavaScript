@@ -129,3 +129,7 @@ Here, `inner()` has lexical access to `count`, even after `outer()` has finished
 | Lexical Scope    | Variables are accessible based on where the function was written, not called    |
 | Scope Chain      | JS looks up the variable through nested scopes                                  |
 | Enables Closures | Functions retain access to their lexical scope even after the outer function is |
+
+const boundGreet = greet.bind(student2, 14);
+
+boundGreet(); // Hello Diya, Age: 14

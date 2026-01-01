@@ -21,10 +21,6 @@ exports.signup = async (req, res) => {
   user.emailVerificationToken = emailVerificationToken;
   user.emailVerificationTokenExpiration = emailVerificationTokenExpiration;
 
-  // Send email (use your email service here)
-  // const verificationUrl = `http://localhost:8080/verify-email?token=${emailVerificationToken}`;
-  // await emailService.sendVerificationEmail(user.email, verificationUrl);
-
   const verificationLink = `${process.env.CLIENT_URL}/api/auth/verify-email?token=${emailVerificationToken}`;
   // console.log(verificationLink);
   // Send email verification link

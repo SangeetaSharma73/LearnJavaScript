@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="mainHeading">hi how are you?</h1>
+    <script>
+      let heading = document.querySelector("h1");
+      // Or get by ID for more specificity
+      // let heading = document.getElementById("mainHeading");
+
+      if (heading) {
+        heading.style.color = "pink";
+        heading.style.backgroundColor = "green";
+        heading.style.padding = "10px";
+      }
+    </script>
+  </body>
+</html>

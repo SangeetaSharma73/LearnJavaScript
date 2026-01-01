@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 class="myhead">Hi how are you</h1>
+    <h1 class="myhead">this is another</h1>
+    <div>
+      <h2>hi hi hi</h2>
+    </div>
+    <div id="container">
+      <h2>hi hi hi</h2>
+    </div>
+    <button onclick="alert('welcome in this page')">Submit</button>
+  </body>
+  <script src="./script.js"></script>
+  <script>
+    // let h1 = document.getElementsByClassName("myhead");
+    // console.log(h1);
+    // Array.from(h1).forEach((ele) => (ele.style.color = "blue"));
+    let divList = document.querySelectorAll("div");
+    console.log(divList);
+    divList.forEach((ele) => (ele.style.backgroundColor = "green"));
+
+    let span = document.createElement("span");
+    span.innerText = "Span text";
+    let container = document.getElementById("container");
+    container.append(" Text ", span);
+  </script>
+</html>

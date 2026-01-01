@@ -85,5 +85,27 @@ console.log(typeof arr);
 function welcome(name) {
   console.log(name);
 }
+wel = welcome(name);
+console.log(wel);
 
-console.log(typeof welcome);
+// greetSomeone(name);
+let greetSomeone = function greetPerson(name) {
+  console.log(`hi how are you ${name}`);
+};
+
+function outer() {
+  let name = "siya";
+  function inner() {
+    console.log(name);
+    return name;
+  }
+  console.log("outer function");
+  return inner;
+}
+
+// let innerFun = outer();
+// console.log(innerFun());
+let innerFun = outer();
+console.log(innerFun());
+let Inner = innerFun();
+console.log(Inner);
